@@ -11,6 +11,9 @@ from winrate_backend.serializers import GameDataSerializer, GameDataListSerializ
 
 from prediction_model.mainCrawler import GameResultCrawler
 
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 class GameDataViewSet(viewsets.ModelViewSet):
     queryset = GameData.objects.all()
     serializer_class = GameDataSerializer
@@ -32,5 +35,13 @@ class GameDataViewSet(viewsets.ModelViewSet):
         serializer = GameDataSerializer(game_data)
         
         crawler = GameResultCrawler(serializer.data["game_id"])
-        if request.data["exist_matchlist"]:
-            crawler.main_crawler(exist_matchlist=True)
+        result = crawler.main_crawler()
+        if result:
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    @action(methods=['POST'], detail=True)
+    def dataset_preprocess(self, request, pk):
+        game_data = get_object_or_404(self.queryset, pk=pk)
+        serializer = GameDataSerializer(game_data)

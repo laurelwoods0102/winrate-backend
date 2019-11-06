@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'winrate-backend',
+    'winrate_backend',
     'rest_framework'
 ]
 

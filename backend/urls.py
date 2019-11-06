@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]
+from rest_framework import routers
+
+from winrate_backend.views import GameDataViewSet
+
+router = routers.DefaultRouter()
+router.register(r'GameData', GameDataViewSet, basename='game_data')
+urlpatterns = router.urls

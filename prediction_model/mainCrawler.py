@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class GameResultCrawler():
     def __init__(self, name):
         self.dataset = list()
-        self.apiKey = "RGAPI-27f494d3-1248-4d0c-a7f6-3c64b4e3ac4d"
+        self.apiKey = "RGAPI-e4809d00-01e5-458d-bf17-b85887800f86"
         self.myName = name.replace(' ', '-')
         self.headers = {
             "Origin": "https://developer.riotgames.com",
@@ -75,14 +75,15 @@ class GameResultCrawler():
         dataset = list()
 
         if exist_matchlist:
-            m = open('./history/matchlist_{}.json'.format(self.myName), 'r')
+            path = os.path.join(BASE_DIR, 'data', 'history', 'matchlist', 'matchlist_{}.json'.format(self.myName))
+            m = open(path, 'r')
             matchlist = json.load(m)
         else:
             list_counter = 0        # matchlist counter
             try:
                 print("Collecting Matchlist")
                 while True:        
-                    matchlist.extend(crawler.crawlMatchlists(list_counter, season))
+                    matchlist.extend(self.crawlMatchlists(list_counter, season))
                     list_counter += 1
             except Exception as e:
                 print(e)
@@ -96,7 +97,7 @@ class GameResultCrawler():
             print("Collecting Match results")
             for match in matchlist:
                 try:
-                    data = crawler.crawlMatch(match)
+                    data = self.crawlMatch(match)
                     #print(data)
                     dataset.append(data)
                 except Exception as e:
@@ -107,8 +108,9 @@ class GameResultCrawler():
             path = os.path.join(BASE_DIR, 'data', 'history', 'history_{}.json'.format(self.myName))
             with open(path, 'w') as f:
                 json.dump(dataset, f, indent=4)
+            return True
 
 
 if __name__ == "__main__":
-    crawler = GameResultCrawler('hide on bush')
-    crawler.main_crawler(exist_matchlist=True)
+    crawler = GameResultCrawler('laurelwoods')
+    crawler.main_crawler()
