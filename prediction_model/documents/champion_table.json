@@ -1,0 +1,727 @@
+[
+    {
+        "name": "Aatrox",
+        "api_id": 266,
+        "id": 0
+    },
+    {
+        "name": "Ahri",
+        "api_id": 103,
+        "id": 1
+    },
+    {
+        "name": "Akali",
+        "api_id": 84,
+        "id": 2
+    },
+    {
+        "name": "Alistar",
+        "api_id": 12,
+        "id": 3
+    },
+    {
+        "name": "Amumu",
+        "api_id": 32,
+        "id": 4
+    },
+    {
+        "name": "Anivia",
+        "api_id": 34,
+        "id": 5
+    },
+    {
+        "name": "Annie",
+        "api_id": 1,
+        "id": 6
+    },
+    {
+        "name": "Ashe",
+        "api_id": 22,
+        "id": 7
+    },
+    {
+        "name": "AurelionSol",
+        "api_id": 136,
+        "id": 8
+    },
+    {
+        "name": "Azir",
+        "api_id": 268,
+        "id": 9
+    },
+    {
+        "name": "Bard",
+        "api_id": 432,
+        "id": 10
+    },
+    {
+        "name": "Blitzcrank",
+        "api_id": 53,
+        "id": 11
+    },
+    {
+        "name": "Brand",
+        "api_id": 63,
+        "id": 12
+    },
+    {
+        "name": "Braum",
+        "api_id": 201,
+        "id": 13
+    },
+    {
+        "name": "Caitlyn",
+        "api_id": 51,
+        "id": 14
+    },
+    {
+        "name": "Camille",
+        "api_id": 164,
+        "id": 15
+    },
+    {
+        "name": "Cassiopeia",
+        "api_id": 69,
+        "id": 16
+    },
+    {
+        "name": "Chogath",
+        "api_id": 31,
+        "id": 17
+    },
+    {
+        "name": "Corki",
+        "api_id": 42,
+        "id": 18
+    },
+    {
+        "name": "Darius",
+        "api_id": 122,
+        "id": 19
+    },
+    {
+        "name": "Diana",
+        "api_id": 131,
+        "id": 20
+    },
+    {
+        "name": "Draven",
+        "api_id": 119,
+        "id": 21
+    },
+    {
+        "name": "DrMundo",
+        "api_id": 36,
+        "id": 22
+    },
+    {
+        "name": "Ekko",
+        "api_id": 245,
+        "id": 23
+    },
+    {
+        "name": "Elise",
+        "api_id": 60,
+        "id": 24
+    },
+    {
+        "name": "Evelynn",
+        "api_id": 28,
+        "id": 25
+    },
+    {
+        "name": "Ezreal",
+        "api_id": 81,
+        "id": 26
+    },
+    {
+        "name": "Fiddlesticks",
+        "api_id": 9,
+        "id": 27
+    },
+    {
+        "name": "Fiora",
+        "api_id": 114,
+        "id": 28
+    },
+    {
+        "name": "Fizz",
+        "api_id": 105,
+        "id": 29
+    },
+    {
+        "name": "Galio",
+        "api_id": 3,
+        "id": 30
+    },
+    {
+        "name": "Gangplank",
+        "api_id": 41,
+        "id": 31
+    },
+    {
+        "name": "Garen",
+        "api_id": 86,
+        "id": 32
+    },
+    {
+        "name": "Gnar",
+        "api_id": 150,
+        "id": 33
+    },
+    {
+        "name": "Gragas",
+        "api_id": 79,
+        "id": 34
+    },
+    {
+        "name": "Graves",
+        "api_id": 104,
+        "id": 35
+    },
+    {
+        "name": "Hecarim",
+        "api_id": 120,
+        "id": 36
+    },
+    {
+        "name": "Heimerdinger",
+        "api_id": 74,
+        "id": 37
+    },
+    {
+        "name": "Illaoi",
+        "api_id": 420,
+        "id": 38
+    },
+    {
+        "name": "Irelia",
+        "api_id": 39,
+        "id": 39
+    },
+    {
+        "name": "Ivern",
+        "api_id": 427,
+        "id": 40
+    },
+    {
+        "name": "Janna",
+        "api_id": 40,
+        "id": 41
+    },
+    {
+        "name": "JarvanIV",
+        "api_id": 59,
+        "id": 42
+    },
+    {
+        "name": "Jax",
+        "api_id": 24,
+        "id": 43
+    },
+    {
+        "name": "Jayce",
+        "api_id": 126,
+        "id": 44
+    },
+    {
+        "name": "Jhin",
+        "api_id": 202,
+        "id": 45
+    },
+    {
+        "name": "Jinx",
+        "api_id": 222,
+        "id": 46
+    },
+    {
+        "name": "Kaisa",
+        "api_id": 145,
+        "id": 47
+    },
+    {
+        "name": "Kalista",
+        "api_id": 429,
+        "id": 48
+    },
+    {
+        "name": "Karma",
+        "api_id": 43,
+        "id": 49
+    },
+    {
+        "name": "Karthus",
+        "api_id": 30,
+        "id": 50
+    },
+    {
+        "name": "Kassadin",
+        "api_id": 38,
+        "id": 51
+    },
+    {
+        "name": "Katarina",
+        "api_id": 55,
+        "id": 52
+    },
+    {
+        "name": "Kayle",
+        "api_id": 10,
+        "id": 53
+    },
+    {
+        "name": "Kayn",
+        "api_id": 141,
+        "id": 54
+    },
+    {
+        "name": "Kennen",
+        "api_id": 85,
+        "id": 55
+    },
+    {
+        "name": "Khazix",
+        "api_id": 121,
+        "id": 56
+    },
+    {
+        "name": "Kindred",
+        "api_id": 203,
+        "id": 57
+    },
+    {
+        "name": "Kled",
+        "api_id": 240,
+        "id": 58
+    },
+    {
+        "name": "KogMaw",
+        "api_id": 96,
+        "id": 59
+    },
+    {
+        "name": "Leblanc",
+        "api_id": 7,
+        "id": 60
+    },
+    {
+        "name": "LeeSin",
+        "api_id": 64,
+        "id": 61
+    },
+    {
+        "name": "Leona",
+        "api_id": 89,
+        "id": 62
+    },
+    {
+        "name": "Lissandra",
+        "api_id": 127,
+        "id": 63
+    },
+    {
+        "name": "Lucian",
+        "api_id": 236,
+        "id": 64
+    },
+    {
+        "name": "Lulu",
+        "api_id": 117,
+        "id": 65
+    },
+    {
+        "name": "Lux",
+        "api_id": 99,
+        "id": 66
+    },
+    {
+        "name": "Malphite",
+        "api_id": 54,
+        "id": 67
+    },
+    {
+        "name": "Malzahar",
+        "api_id": 90,
+        "id": 68
+    },
+    {
+        "name": "Maokai",
+        "api_id": 57,
+        "id": 69
+    },
+    {
+        "name": "MasterYi",
+        "api_id": 11,
+        "id": 70
+    },
+    {
+        "name": "MissFortune",
+        "api_id": 21,
+        "id": 71
+    },
+    {
+        "name": "MonkeyKing",
+        "api_id": 62,
+        "id": 72
+    },
+    {
+        "name": "Mordekaiser",
+        "api_id": 82,
+        "id": 73
+    },
+    {
+        "name": "Morgana",
+        "api_id": 25,
+        "id": 74
+    },
+    {
+        "name": "Nami",
+        "api_id": 267,
+        "id": 75
+    },
+    {
+        "name": "Nasus",
+        "api_id": 75,
+        "id": 76
+    },
+    {
+        "name": "Nautilus",
+        "api_id": 111,
+        "id": 77
+    },
+    {
+        "name": "Neeko",
+        "api_id": 518,
+        "id": 78
+    },
+    {
+        "name": "Nidalee",
+        "api_id": 76,
+        "id": 79
+    },
+    {
+        "name": "Nocturne",
+        "api_id": 56,
+        "id": 80
+    },
+    {
+        "name": "Nunu",
+        "api_id": 20,
+        "id": 81
+    },
+    {
+        "name": "Olaf",
+        "api_id": 2,
+        "id": 82
+    },
+    {
+        "name": "Orianna",
+        "api_id": 61,
+        "id": 83
+    },
+    {
+        "name": "Ornn",
+        "api_id": 516,
+        "id": 84
+    },
+    {
+        "name": "Pantheon",
+        "api_id": 80,
+        "id": 85
+    },
+    {
+        "name": "Poppy",
+        "api_id": 78,
+        "id": 86
+    },
+    {
+        "name": "Pyke",
+        "api_id": 555,
+        "id": 87
+    },
+    {
+        "name": "Qiyana",
+        "api_id": 246,
+        "id": 88
+    },
+    {
+        "name": "Quinn",
+        "api_id": 133,
+        "id": 89
+    },
+    {
+        "name": "Rakan",
+        "api_id": 497,
+        "id": 90
+    },
+    {
+        "name": "Rammus",
+        "api_id": 33,
+        "id": 91
+    },
+    {
+        "name": "RekSai",
+        "api_id": 421,
+        "id": 92
+    },
+    {
+        "name": "Renekton",
+        "api_id": 58,
+        "id": 93
+    },
+    {
+        "name": "Rengar",
+        "api_id": 107,
+        "id": 94
+    },
+    {
+        "name": "Riven",
+        "api_id": 92,
+        "id": 95
+    },
+    {
+        "name": "Rumble",
+        "api_id": 68,
+        "id": 96
+    },
+    {
+        "name": "Ryze",
+        "api_id": 13,
+        "id": 97
+    },
+    {
+        "name": "Sejuani",
+        "api_id": 113,
+        "id": 98
+    },
+    {
+        "name": "Shaco",
+        "api_id": 35,
+        "id": 99
+    },
+    {
+        "name": "Shen",
+        "api_id": 98,
+        "id": 100
+    },
+    {
+        "name": "Shyvana",
+        "api_id": 102,
+        "id": 101
+    },
+    {
+        "name": "Singed",
+        "api_id": 27,
+        "id": 102
+    },
+    {
+        "name": "Sion",
+        "api_id": 14,
+        "id": 103
+    },
+    {
+        "name": "Sivir",
+        "api_id": 15,
+        "id": 104
+    },
+    {
+        "name": "Skarner",
+        "api_id": 72,
+        "id": 105
+    },
+    {
+        "name": "Sona",
+        "api_id": 37,
+        "id": 106
+    },
+    {
+        "name": "Soraka",
+        "api_id": 16,
+        "id": 107
+    },
+    {
+        "name": "Swain",
+        "api_id": 50,
+        "id": 108
+    },
+    {
+        "name": "Sylas",
+        "api_id": 517,
+        "id": 109
+    },
+    {
+        "name": "Syndra",
+        "api_id": 134,
+        "id": 110
+    },
+    {
+        "name": "TahmKench",
+        "api_id": 223,
+        "id": 111
+    },
+    {
+        "name": "Taliyah",
+        "api_id": 163,
+        "id": 112
+    },
+    {
+        "name": "Talon",
+        "api_id": 91,
+        "id": 113
+    },
+    {
+        "name": "Taric",
+        "api_id": 44,
+        "id": 114
+    },
+    {
+        "name": "Teemo",
+        "api_id": 17,
+        "id": 115
+    },
+    {
+        "name": "Thresh",
+        "api_id": 412,
+        "id": 116
+    },
+    {
+        "name": "Tristana",
+        "api_id": 18,
+        "id": 117
+    },
+    {
+        "name": "Trundle",
+        "api_id": 48,
+        "id": 118
+    },
+    {
+        "name": "Tryndamere",
+        "api_id": 23,
+        "id": 119
+    },
+    {
+        "name": "TwistedFate",
+        "api_id": 4,
+        "id": 120
+    },
+    {
+        "name": "Twitch",
+        "api_id": 29,
+        "id": 121
+    },
+    {
+        "name": "Udyr",
+        "api_id": 77,
+        "id": 122
+    },
+    {
+        "name": "Urgot",
+        "api_id": 6,
+        "id": 123
+    },
+    {
+        "name": "Varus",
+        "api_id": 110,
+        "id": 124
+    },
+    {
+        "name": "Vayne",
+        "api_id": 67,
+        "id": 125
+    },
+    {
+        "name": "Veigar",
+        "api_id": 45,
+        "id": 126
+    },
+    {
+        "name": "Velkoz",
+        "api_id": 161,
+        "id": 127
+    },
+    {
+        "name": "Vi",
+        "api_id": 254,
+        "id": 128
+    },
+    {
+        "name": "Viktor",
+        "api_id": 112,
+        "id": 129
+    },
+    {
+        "name": "Vladimir",
+        "api_id": 8,
+        "id": 130
+    },
+    {
+        "name": "Volibear",
+        "api_id": 106,
+        "id": 131
+    },
+    {
+        "name": "Warwick",
+        "api_id": 19,
+        "id": 132
+    },
+    {
+        "name": "Xayah",
+        "api_id": 498,
+        "id": 133
+    },
+    {
+        "name": "Xerath",
+        "api_id": 101,
+        "id": 134
+    },
+    {
+        "name": "XinZhao",
+        "api_id": 5,
+        "id": 135
+    },
+    {
+        "name": "Yasuo",
+        "api_id": 157,
+        "id": 136
+    },
+    {
+        "name": "Yorick",
+        "api_id": 83,
+        "id": 137
+    },
+    {
+        "name": "Yuumi",
+        "api_id": 350,
+        "id": 138
+    },
+    {
+        "name": "Zac",
+        "api_id": 154,
+        "id": 139
+    },
+    {
+        "name": "Zed",
+        "api_id": 238,
+        "id": 140
+    },
+    {
+        "name": "Ziggs",
+        "api_id": 115,
+        "id": 141
+    },
+    {
+        "name": "Zilean",
+        "api_id": 26,
+        "id": 142
+    },
+    {
+        "name": "Zoe",
+        "api_id": 142,
+        "id": 143
+    },
+    {
+        "name": "Zyra",
+        "api_id": 143,
+        "id": 144
+    }
+]
