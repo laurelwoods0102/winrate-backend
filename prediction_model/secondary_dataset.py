@@ -30,6 +30,7 @@ def average_dataset(name):
     np_average_table = np.array([average_table], dtype='f4')
     df_average_table = pd.DataFrame(np_average_table.T, columns=["average_table"])
 
+    # average winrate for each champion
     path = os.path.join(BASE_DIR, 'data', 'dataset', 'secondary', 'dataset_{}_average_table.csv'.format(name))
     df_average_table.to_csv(path, index=False)
     
@@ -40,6 +41,7 @@ def average_dataset(name):
     np_average = np.array([average])
     df_average = pd.DataFrame(np_average.T, columns=["average"])
 
+    # dataset for calculating average table (just for backup)
     path = os.path.join(BASE_DIR, 'data', 'dataset', 'secondary', 'dataset_{}_average.csv'.format(name))
     df_average.to_csv(path, index=False)
     
@@ -86,7 +88,7 @@ def secondary_dataset_generate(name, model_type):
     dataset = pd.DataFrame(data.T, columns=["predict_{}".format(model_type)])
     
     dataset.to_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'secondary', 'dataset_{0}_{1}.csv'.format(name, model_type)), index=False)
-    response.to_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'secondary', 'dataset_{0}_{1}_response.csv'.format(name, model_type)), index=False, header=['y'])
+    response.to_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'secondary', 'dataset_{0}_response.csv'.format(name)), index=False, header=['y'])
 
 
 if __name__ == "__main__":

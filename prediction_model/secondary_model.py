@@ -5,6 +5,10 @@ from sklearn.model_selection import KFold
 import tensorflow as tf
 from tensorflow import keras
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 def df_to_dataset(dataframe, batch_size=32):
     response = dataframe.pop('y')    
     dataset = tf.data.Dataset.from_tensor_slices((dict(dataframe), response.values))
@@ -21,21 +25,25 @@ def pack_features_vector(features, labels):
     return features, labels
 
 class LogisticLayer(keras.layers.Layer):
-    def __init__(self, input_shape, num_outputs=1):
+    def __init__(self, input_shape, trained, name=None, num_outputs=1):
         super(LogisticLayer, self).__init__()
-        w_init = tf.initializers.GlorotUniform()     # NOTICE : weight matrix itself contains bias
-        self.w = tf.Variable(
-            initial_value=w_init(shape=(input_shape, num_outputs), dtype=tf.float32),
-            trainable=True)
+        if trained:
+            path = os.path.join(BASE_DIR, 'data', 'trained_model', 'weights_secondary_{0}.npy'.format(name))
+            self.w = tf.Variable(np.load(path))
+        else:
+            w_init = tf.initializers.GlorotUniform()     # NOTICE : weight matrix itself contains bias
+            self.w = tf.Variable(
+                initial_value=w_init(shape=(input_shape, num_outputs), dtype=tf.float32),
+                trainable=True)
 
     @tf.function
     def call(self, features):
         return tf.matmul(features, self.w)
 
 class LogisticModel(tf.keras.Model):
-    def __init__(self, input_shape):
+    def __init__(self, input_shape, trained=False, name=None):
         super(LogisticModel, self).__init__()
-        self.logistic_layer = LogisticLayer(input_shape)    #input shape = 146, 4
+        self.logistic_layer = LogisticLayer(input_shape, trained=trained, name=name)    #input shape = 146, 4
 
     @tf.function
     def call(self, features, training=False):
@@ -125,11 +133,13 @@ def KFoldValidation(name):
     va_df = pd.DataFrame(va.T, columns=["val_accuracy"])
     va_df.to_csv("./model_results/{0}_secondary_validation_accuracy.csv".format(name), index=False)
 
-def processor(name):
-    df_team = pd.read_csv("./dataset/secondary/dataset_{0}_team.csv".format(name), dtype='float32')
-    df_enemy = pd.read_csv("./dataset/secondary/dataset_{0}_enemy.csv".format(name), dtype='float32')
-    df_average = pd.read_csv("./dataset/secondary/dataset_{0}_average.csv".format(name), dtype='float32')
-    df_response = pd.read_csv("./dataset/secondary/dataset_{0}_response.csv".format(name), dtype='float32')
+def secondary_model_train(name):
+    name = name.replace(' ', '-')
+    secondary_path = os.path.join(BASE_DIR, 'data', 'dataset', 'secondary')
+    df_team = pd.read_csv(os.path.join(secondary_path, "dataset_{0}_team.csv".format(name)), dtype='float32')
+    df_enemy = pd.read_csv(os.path.join(secondary_path, "dataset_{0}_enemy.csv".format(name)), dtype='float32')
+    df_average = pd.read_csv(os.path.join(secondary_path, "dataset_{0}_average.csv".format(name)), dtype='float32')
+    df_response = pd.read_csv(os.path.join(secondary_path, "dataset_{0}_response.csv".format(name)), dtype='float32')
 
     bias = np.array([[float(1) for i in range(len(df_response))]], dtype='f4')
     bias = pd.DataFrame(bias.T, columns=["bias"])
@@ -138,47 +148,49 @@ def processor(name):
 
     batch_size = 32
 
-    train_len, test_size = divmod(len(df), batch_size)
-    if test_size == 0:
-        train_len -= 1
-        test_size = batch_size
-
-    train_df = df.loc[:train_len*batch_size-1]
-    test_df = df.loc[train_len*batch_size-1:]
-
-    train_ds = df_to_dataset(train_df)
-    train_dataset = train_ds.map(pack_features_vector)
-
-    test_response = test_df.pop('y')
-    test_dataset = zip(test_df.values, test_response.values)
+    _, cut = divmod(len(df), batch_size)
+    
+    df = df.loc[:len(df)-cut-1]
+    ds = df_to_dataset(df)
+    dataset = ds.map(pack_features_vector)
 
     model = LogisticModel(4)
     
     costs = list()
-    for features, labels in train_dataset:
+    for features, labels in dataset:
         current_cost = train(model, features, labels)
         costs.append(current_cost.numpy())
 
-    test_hypos = list()
-    test_labels = list()
+    weights = model.logistic_layer.w.numpy()    
+    np.save(os.path.join(BASE_DIR, 'data', 'trained_model', 'weights_secondary_{0}.npy'.format(name)), weights)
 
-    for features, label in test_dataset:
-        features = tf.convert_to_tensor([features])
-        logit = model(features)
-        hypo = hypothesis(logit)
+def secondary_model_predict(name, input_team, input_enemy):
+    name = name.replace(' ', '-')
+    average_table = pd.read_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'secondary', 'dataset_{}_average_table.csv'.format(name)), dtype='float32')
 
-        test_hypos.append(hypo)
-        test_labels.append(label) 
+    prediction = list()
+    model = LogisticModel(4, trained=True, name=name)
+
+    for i, average in enumerate(average_table.values.T.tolist()[0]):
+        if average == 0: continue
+        result = dict()
+        dataset = list()
+
+        dataset.append(1.0)
+        dataset.append(input_team)
+        dataset.append(input_enemy)
+        dataset.append(average)
+
+        logit = model([dataset])
+        hypos = hypothesis(logit)
+
+        result["champion"] = i
+        result["predict"] = hypos.numpy()[0][0]
+        prediction.append(result)
     
-    test_accuracy = batch_accuracy(test_hypos, test_labels, batch_size=len(test_hypos))
-    print("test accuracy : ", test_accuracy)
-
-    test_df.to_csv("./model_results/{0}_secondary_test_dataset.csv".format(name), index=False)
-
-    weights = model.logistic_layer.w.numpy()
-    np.save('./trained_model/weights_secondary_{0}.npy'.format(name), weights)
+    return prediction
 
 if __name__ == "__main__":
-    name = "hide on bush".replace(" ", "-")
+    name = "laurelwoods"
     #KFoldValidation(name)
-    processor(name)
+    secondary_model_predict("laurelwoods", None, None)

@@ -89,6 +89,7 @@ def batch_accuracy(hypos, labels, batch_size=32):
 
 
 def KFoldValidation(name, model_type):    
+    name = name.replace(' ', '-')
     df = pd.read_csv(os.path.join(BASE_DIR, 'dataset', 'dataset_{0}_{1}.csv'.format(name, model_type)), dtype='float32')
     df = df.sample(frac=1).reset_index(drop=True)   # shuffle
 
@@ -138,6 +139,7 @@ def KFoldValidation(name, model_type):
             g.write('\n')
 
 def primary_model_train(name, model_type):    
+    name = name.replace(' ', '-')
     df = pd.read_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'dataset_{0}_{1}.csv'.format(name, model_type)), dtype='float32')
     #df = df.sample(frac=1).reset_index(drop=True)   # shuffle
     
@@ -160,6 +162,7 @@ def primary_model_train(name, model_type):
     np.save(os.path.join(BASE_DIR, 'data', 'trained_model', 'weights_{0}_{1}.npy'.format(name, model_type)), weights)
 
 def primary_model_predict(name, model_type, model_input):
+    name = name.replace(' ', '-')
     model = LogisticModel(146, trained=True, name=name, model_type=model_type)
     logit = model([model_input])
     hypos = hypothesis(logit)
@@ -167,6 +170,6 @@ def primary_model_predict(name, model_type, model_input):
     return hypos.numpy()[0][0]
 
 if __name__ == "__main__":
-    name = "hide on bush".replace(' ', '-')
+    name = "hide on bush"
     KFoldValidation(name, "enemy")
     primary_model_train(name, "enemy")

@@ -13,6 +13,7 @@ from prediction_model.mainCrawler import GameResultCrawler
 from prediction_model.dataset_preprocessor import DatasetPreprocessor, process_input
 from prediction_model.primary_models import primary_model_train, primary_model_predict
 from prediction_model.secondary_dataset import secondary_dataset_generate, average_dataset
+from prediction_model.secondary_model import secondary_model_train, secondary_model_predict
 
 from ast import literal_eval
 import os
@@ -61,8 +62,10 @@ class GameDataViewSet(viewsets.ModelViewSet):
         if request.data["model_type"] == "primary":
             primary_model_train(serializer.data["game_id"], "team")
             primary_model_train(serializer.data["game_id"], "enemy")
+        elif request.data["model_type"] == "secondary":
+            secondary_model_train(serializer.data["game_id"])
         else:
-            pass
+            return Response(status=status.HTTP_400_BAD_REQUEST)
         
         return Response(status=status.HTTP_200_OK)
 
@@ -75,8 +78,9 @@ class GameDataViewSet(viewsets.ModelViewSet):
         input_enemy = process_input(literal_eval(request.data["enemy"]))
 
         predict_team = primary_model_predict(serializer.data["game_id"], "team", input_team)
-        predict_enemy = primary_model_predict(serializer.data["game_id"], "enemy", input_enemy)
-        
+        predict_enemy = primary_model_predict(serializer.data["game_id"], "enemy", input_enemy)    
 
-        return Response({"team_predict": predict_team})
+        predict_secondary = secondary_model_predict(serializer.data["game_id"], predict_team, predict_enemy)
+
+        return Response(predict_secondary)
 
