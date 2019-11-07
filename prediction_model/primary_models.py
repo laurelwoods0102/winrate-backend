@@ -5,13 +5,18 @@ from sklearn.model_selection import KFold
 import tensorflow as tf
 from tensorflow import keras
 
-def df_to_dataset(dataframe, batch_size=32):
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def df_to_dataset(dataframe, batch_size=32, shuffle=True):
     dataframe = dataframe.copy()
     response = dataframe.pop('y')    
     dataset = tf.data.Dataset.from_tensor_slices((dict(dataframe), response.values))
 
-    #if shuffle:
-        #dataset = dataset.shuffle(buffer_size=len(dataframe))
+    if shuffle:
+        dataset = dataset.shuffle(buffer_size=len(dataframe))
     if batch_size:
         dataset = dataset.batch(batch_size)
 
@@ -79,8 +84,8 @@ def batch_accuracy(hypos, labels, batch_size=32):
     return accuracy/batch_size
 
 
-def KFoldValidation(name, model_type):
-    df = pd.read_csv("./dataset/dataset_{0}_{1}.csv".format(name, model_type), dtype='float32')
+def KFoldValidation(name, model_type):    
+    df = pd.read_csv(os.path.join(BASE_DIR, 'dataset', 'dataset_{0}_{1}.csv'.format(name, model_type)), dtype='float32')
     df = df.sample(frac=1).reset_index(drop=True)   # shuffle
 
     batch_size = 32
@@ -128,56 +133,29 @@ def KFoldValidation(name, model_type):
             g.write(str(va))
             g.write('\n')
 
-def processor(name, model_type):
-    df = pd.read_csv("./dataset/dataset_{0}_{1}.csv".format(name, model_type))
-    df = df.sample(frac=1).reset_index(drop=True)   # shuffle
-    df = df.astype('float32')
+def process(name, model_type):    
+    df = pd.read_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'dataset_{0}_{1}.csv'.format(name, model_type)), dtype='float32')
+    #df = df.sample(frac=1).reset_index(drop=True)   # shuffle
     
     batch_size = 32
 
-    train_len, test_size = divmod(len(df), batch_size)
-    if test_size == 0:
-        train_len -= 1
-        test_size = batch_size
-
-    train_df = df.loc[:train_len*batch_size-1]
-    test_df = df.loc[train_len*batch_size-1:]
-
-    train_ds = df_to_dataset(train_df)
-    train_dataset = train_ds.map(pack_features_vector)
-    #train_dataset = train_ds.map(pack_labels_vector)
-
-    test_response = test_df.pop('y')
-    test_dataset = zip(test_df.values, test_response.values)
-
+    _, cut = divmod(len(df), batch_size)
+    
+    df = df.loc[:len(df)-cut-1]
+    ds = df_to_dataset(df)
+    dataset = ds.map(pack_features_vector)
  
     model = LogisticModel(146)
     
     costs = list()
-    for features, labels in train_dataset:
+    for features, labels in dataset:
         current_cost = train(model, features, labels)
         costs.append(current_cost.numpy())
-
-    test_hypos = list()
-    test_labels = list()
-
-    for features, label in test_dataset:
-        features = tf.convert_to_tensor([features])
-        logit = model(features)
-        hypo = hypothesis(logit)
-
-        test_hypos.append(hypo)
-        test_labels.append(label) 
     
-    test_accuracy = batch_accuracy(test_hypos, test_labels, batch_size=len(test_hypos))
-    print("test accuracy : ", test_accuracy)
-
-    test_df.to_csv("./model_results/{0}_{1}_test_dataset.csv".format(name, model_type), index=False)
-    
-    weights = model.logistic_layer.w.numpy()
-    np.save('./trained_model/weights_{0}_{1}.npy'.format(name, model_type), weights)
+    weights = model.logistic_layer.w.numpy()    
+    np.save(os.path.join(BASE_DIR, 'data', 'trained_model', 'weights_{0}_{1}.npy'.format(name, model_type)), weights)
     
 if __name__ == "__main__":
     name = "hide on bush".replace(' ', '-')
     KFoldValidation(name, "enemy")
-    processor(name, "enemy")
+    process(name, "enemy")

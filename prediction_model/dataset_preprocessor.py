@@ -2,14 +2,17 @@ import json
 import numpy as np
 import pandas as pd
 from collections import defaultdict
+import os
 
-class preprocessor:
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+class DatasetPreprocessor:
     def __init__(self, name):
         self.name = name.replace(' ', '-')
-        m = open('./documents/mapping.json', 'r')
+        m = open(os.path.join(BASE_DIR, 'prediction_model', 'documents', 'mapping.json'), 'r')
         self.map = json.load(m)
-
-        history = open('./history/history_{0}.json'.format(self.name))
+        
+        history = open(os.path.join(BASE_DIR, 'data', 'history', 'history_{}.json'.format(self.name)))
         self.history = json.load(history)
 
         columns = ['x' + str(i) for i in range(146)]
@@ -29,7 +32,7 @@ class preprocessor:
         
         return dataset
 
-    def processor(self):
+    def process(self):
         dataframe = defaultdict(list)
 
         for data in self.history:
@@ -51,7 +54,7 @@ class preprocessor:
             dataframe["team"].append(self.mapping(team_data, result))
             dataframe["enemy"].append(self.mapping(enemy_data, result))
         
-        with open("./dataset/dataset_{0}_{1}.json".format(self.name, "pick_history"), 'w') as j:
+        with open(os.path.join(BASE_DIR, 'data', 'dataset', 'dataset_{0}_{1}.json'.format(self.name, "pick_history")), 'w') as j:
             json.dump(dataframe["myPicks"], j, indent=4)
             
         dataset_team = np.array(dataframe["team"], dtype=np.float32)
@@ -60,10 +63,11 @@ class preprocessor:
         dataset_enemy = np.array(dataframe["enemy"], dtype=np.float32)
         dataset_enemy = pd.DataFrame(dataset_enemy, columns=self.columns)
 
-        dataset_team.to_csv("./dataset/dataset_{0}_{1}.csv".format(self.name, "team"), index=False)
-        dataset_enemy.to_csv("./dataset/dataset_{0}_{1}.csv".format(self.name, "enemy"), index=False)
+        
+        dataset_team.to_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'dataset_{0}_{1}.csv'.format(self.name, "team")), index=False)
+        dataset_enemy.to_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'dataset_{0}_{1}.csv'.format(self.name, "enemy")), index=False)
 
 
 if __name__ == "__main__":
-    preprocessor = preprocessor("hide on bush")
-    preprocessor.processor()
+    preprocessor = DatasetPreprocessor("hide on bush")
+    preprocessor.process()
