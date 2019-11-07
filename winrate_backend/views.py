@@ -10,9 +10,11 @@ from winrate_backend.models import GameData
 from winrate_backend.serializers import GameDataSerializer, GameDataListSerializer
 
 from prediction_model.mainCrawler import GameResultCrawler
-from prediction_model.dataset_preprocessor import DatasetPreprocessor
-from prediction_model.primary_models import process as primary_model_train
+from prediction_model.dataset_preprocessor import DatasetPreprocessor, process_input
+from prediction_model.primary_models import primary_model_train, primary_model_predict
+from prediction_model.secondary_dataset import secondary_dataset_generate, average_dataset
 
+from ast import literal_eval
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,10 +44,15 @@ class GameDataViewSet(viewsets.ModelViewSet):
         game_data = get_object_or_404(self.queryset, pk=pk)
         serializer = GameDataSerializer(game_data)
 
-        preprocessor = DatasetPreprocessor(serializer.data["game_id"])
-        preprocessor.process()
+        primary_preprocessor = DatasetPreprocessor(serializer.data["game_id"])
+        primary_preprocessor.process_dataset()
+
+        secondary_dataset_generate(serializer.data["game_id"], "team")
+        secondary_dataset_generate(serializer.data["game_id"], "enemy")
+        average_dataset(serializer.data["game_id"])
+
         return Response(status=status.HTTP_200_OK)
-    
+
     @action(methods=['POST'], detail=True)
     def model_train(self, request, pk):
         game_data = get_object_or_404(self.queryset, pk=pk)
@@ -58,4 +65,18 @@ class GameDataViewSet(viewsets.ModelViewSet):
             pass
         
         return Response(status=status.HTTP_200_OK)
+
+    @action(methods=['GET'], detail=True)
+    def predict(self, request, pk):
+        game_data = get_object_or_404(self.queryset, pk=pk)
+        serializer = GameDataSerializer(game_data)
+
+        input_team = process_input(literal_eval(request.data["team"]))
+        input_enemy = process_input(literal_eval(request.data["enemy"]))
+
+        predict_team = primary_model_predict(serializer.data["game_id"], "team", input_team)
+        predict_enemy = primary_model_predict(serializer.data["game_id"], "enemy", input_enemy)
+        
+
+        return Response({"team_predict": predict_team})
 

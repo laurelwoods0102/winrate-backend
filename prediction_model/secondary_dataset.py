@@ -5,8 +5,13 @@ import pandas as pd
 import tensorflow as tf
 from tensorflow import keras
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 def average_dataset(name):
-    m = open("./dataset/dataset_{}_pick_history.json".format(name))
+    name = name.replace(' ', '-')
+    m = open(os.path.join(BASE_DIR, 'data', 'dataset', 'dataset_{}_pick_history.json'.format(name)))
     my_picks = json.load(m)
 
     average_table = [0 for i in range(145)]
@@ -24,7 +29,9 @@ def average_dataset(name):
 
     np_average_table = np.array([average_table], dtype='f4')
     df_average_table = pd.DataFrame(np_average_table.T, columns=["average_table"])
-    df_average_table.to_csv("./dataset/secondary/dataset_{}_average_table.csv".format(name), index=False)
+
+    path = os.path.join(BASE_DIR, 'data', 'dataset', 'secondary', 'dataset_{}_average_table.csv'.format(name))
+    df_average_table.to_csv(path, index=False)
     
     average = list()
     for pick in my_picks:
@@ -32,7 +39,9 @@ def average_dataset(name):
 
     np_average = np.array([average])
     df_average = pd.DataFrame(np_average.T, columns=["average"])
-    df_average.to_csv("./dataset/secondary/dataset_{}_average.csv".format(name), index=False)
+
+    path = os.path.join(BASE_DIR, 'data', 'dataset', 'secondary', 'dataset_{}_average.csv'.format(name))
+    df_average.to_csv(path, index=False)
     
 
 class LogisticLayer(keras.layers.Layer):
@@ -57,10 +66,11 @@ class LogisticModel(tf.keras.Model):
 def hypothesis(logit):
     return tf.divide(1.0, 1.0 + tf.exp(-1.0*logit))
 
-def processor(name, model_type):
-    weights = np.load('./trained_model/weights_{0}_{1}.npy'.format(name, model_type))
+def secondary_dataset_generate(name, model_type):
+    name = name.replace(' ', '-')
+    weights = np.load(os.path.join(BASE_DIR, 'data', 'trained_model', 'weights_{0}_{1}.npy'.format(name, model_type)))
 
-    df = pd.read_csv("./dataset/dataset_{0}_{1}.csv".format(name, model_type))
+    df = pd.read_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'dataset_{0}_{1}.csv'.format(name, model_type)), dtype='float32')
     response = df.pop('y')
     
     model = LogisticModel(weights)
@@ -74,12 +84,12 @@ def processor(name, model_type):
     
     data = np.array([predictions])
     dataset = pd.DataFrame(data.T, columns=["predict_{}".format(model_type)])
-    dataset.to_csv("./dataset/secondary/dataset_{0}_{1}.csv".format(name, model_type), index=False)
     
-    response.to_csv("./dataset/secondary/dataset_{0}_response.csv".format(name), index=False, header=['y'])
+    dataset.to_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'secondary', 'dataset_{0}_{1}.csv'.format(name, model_type)), index=False)
+    response.to_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'secondary', 'dataset_{0}_{1}_response.csv'.format(name, model_type)), index=False, header=['y'])
 
 
 if __name__ == "__main__":
-    name = "hide on bush".replace(' ', '-')
+    name = "hide on bush"
     #processor(name, "enemy")
     average_dataset(name)

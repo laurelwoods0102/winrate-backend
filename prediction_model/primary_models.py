@@ -34,21 +34,25 @@ def pack_labels_vector(features, labels):
     return features, labels
 
 class LogisticLayer(keras.layers.Layer):
-    def __init__(self, input_shape, num_outputs=1):
+    def __init__(self, input_shape, trained, name=None, model_type=None, num_outputs=1):
         super(LogisticLayer, self).__init__()
-        w_init = tf.initializers.GlorotUniform()     # NOTICE : weight matrix itself contains bias
-        self.w = tf.Variable(
-            initial_value=w_init(shape=(input_shape, num_outputs), dtype='float32'),
-            trainable=True)
+        if trained:
+            path = os.path.join(BASE_DIR, 'data', 'trained_model', 'weights_{0}_{1}.npy'.format(name, model_type))
+            self.w = tf.Variable(np.load(path))
+        else:
+            w_init = tf.initializers.GlorotUniform()     # NOTICE : weight matrix itself contains bias
+            self.w = tf.Variable(
+                initial_value=w_init(shape=(input_shape, num_outputs), dtype='float32'),
+                trainable=True)
 
     @tf.function
     def call(self, features):
         return tf.matmul(features, self.w)
 
 class LogisticModel(tf.keras.Model):
-    def __init__(self, input_shape):
+    def __init__(self, input_shape, trained=False, name=None, model_type=None):
         super(LogisticModel, self).__init__()
-        self.logistic_layer = LogisticLayer(input_shape)    #input shape = 146, 1
+        self.logistic_layer = LogisticLayer(input_shape, trained=trained, name=name, model_type=model_type)    #input shape = 146, 1
 
     @tf.function
     def call(self, features, training=False):
@@ -133,7 +137,7 @@ def KFoldValidation(name, model_type):
             g.write(str(va))
             g.write('\n')
 
-def process(name, model_type):    
+def primary_model_train(name, model_type):    
     df = pd.read_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'dataset_{0}_{1}.csv'.format(name, model_type)), dtype='float32')
     #df = df.sample(frac=1).reset_index(drop=True)   # shuffle
     
@@ -154,8 +158,15 @@ def process(name, model_type):
     
     weights = model.logistic_layer.w.numpy()    
     np.save(os.path.join(BASE_DIR, 'data', 'trained_model', 'weights_{0}_{1}.npy'.format(name, model_type)), weights)
-    
+
+def primary_model_predict(name, model_type, model_input):
+    model = LogisticModel(146, trained=True, name=name, model_type=model_type)
+    logit = model([model_input])
+    hypos = hypothesis(logit)
+
+    return hypos.numpy()[0][0]
+
 if __name__ == "__main__":
     name = "hide on bush".replace(' ', '-')
     KFoldValidation(name, "enemy")
-    process(name, "enemy")
+    primary_model_train(name, "enemy")

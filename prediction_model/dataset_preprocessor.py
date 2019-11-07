@@ -32,7 +32,7 @@ class DatasetPreprocessor:
         
         return dataset
 
-    def process(self):
+    def process_dataset(self):
         dataframe = defaultdict(list)
 
         for data in self.history:
@@ -68,6 +68,20 @@ class DatasetPreprocessor:
         dataset_enemy.to_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'dataset_{0}_{1}.csv'.format(self.name, "enemy")), index=False)
 
 
+def process_input(model_input):
+    m = open(os.path.join(BASE_DIR, 'prediction_model', 'documents', 'mapping.json'), 'r')
+    mapping = json.load(m)
+
+    processed_input = list()
+    champion_picks = [float(0) for i in range(145)]
+    
+    for mi in model_input:
+        champion_picks[mapping[str(mi)]] = 1.0
+
+    processed_input.append(1.0)   #bias
+    processed_input.extend(champion_picks)
+    return processed_input
+
 if __name__ == "__main__":
     preprocessor = DatasetPreprocessor("hide on bush")
-    preprocessor.process()
+    preprocessor.process_dataset()
