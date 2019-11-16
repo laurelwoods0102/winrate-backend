@@ -28,7 +28,7 @@ class LogisticLayer(keras.layers.Layer):
     def __init__(self, input_shape, trained, name=None, num_outputs=1):
         super(LogisticLayer, self).__init__()
         if trained:
-            path = os.path.join(BASE_DIR, 'data', 'trained_model', 'weights_secondary_{0}.npy'.format(name))
+            path = os.path.join(BASE_DIR, 'data', 'trained_model', 'weights_{0}_secondary.npy'.format(name))
             self.w = tf.Variable(np.load(path))
         else:
             w_init = tf.initializers.GlorotUniform()     # NOTICE : weight matrix itself contains bias
@@ -162,7 +162,7 @@ def secondary_model_train(name):
         costs.append(current_cost.numpy())
 
     weights = model.logistic_layer.w.numpy()    
-    np.save(os.path.join(BASE_DIR, 'data', 'trained_model', 'weights_secondary_{0}.npy'.format(name)), weights)
+    np.save(os.path.join(BASE_DIR, 'data', 'trained_model', 'weights_{0}_secondary.npy'.format(name)), weights)
 
 def secondary_model_predict(name, input_team, input_enemy):
     name = name.replace(' ', '-')

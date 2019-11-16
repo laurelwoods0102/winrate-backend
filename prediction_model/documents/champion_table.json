@@ -1,726 +1,871 @@
 [
     {
         "name": "Aatrox",
+        "name_ko": "아트록스",
         "api_id": 266,
         "id": 0
     },
     {
         "name": "Ahri",
+        "name_ko": "아리",
         "api_id": 103,
         "id": 1
     },
     {
         "name": "Akali",
+        "name_ko": "아칼리",
         "api_id": 84,
         "id": 2
     },
     {
         "name": "Alistar",
+        "name_ko": "알리스타",
         "api_id": 12,
         "id": 3
     },
     {
         "name": "Amumu",
+        "name_ko": "아무무",
         "api_id": 32,
         "id": 4
     },
     {
         "name": "Anivia",
+        "name_ko": "애니비아",
         "api_id": 34,
         "id": 5
     },
     {
         "name": "Annie",
+        "name_ko": "애니",
         "api_id": 1,
         "id": 6
     },
     {
         "name": "Ashe",
+        "name_ko": "애쉬",
         "api_id": 22,
         "id": 7
     },
     {
         "name": "AurelionSol",
+        "name_ko": "아우렐리온 솔",
         "api_id": 136,
         "id": 8
     },
     {
         "name": "Azir",
+        "name_ko": "아지르",
         "api_id": 268,
         "id": 9
     },
     {
         "name": "Bard",
+        "name_ko": "바드",
         "api_id": 432,
         "id": 10
     },
     {
         "name": "Blitzcrank",
+        "name_ko": "블리츠크랭크",
         "api_id": 53,
         "id": 11
     },
     {
         "name": "Brand",
+        "name_ko": "브랜드",
         "api_id": 63,
         "id": 12
     },
     {
         "name": "Braum",
+        "name_ko": "브라움",
         "api_id": 201,
         "id": 13
     },
     {
         "name": "Caitlyn",
+        "name_ko": "케이틀린",
         "api_id": 51,
         "id": 14
     },
     {
         "name": "Camille",
+        "name_ko": "카밀",
         "api_id": 164,
         "id": 15
     },
     {
         "name": "Cassiopeia",
+        "name_ko": "카시오페아",
         "api_id": 69,
         "id": 16
     },
     {
         "name": "Chogath",
+        "name_ko": "초가스",
         "api_id": 31,
         "id": 17
     },
     {
         "name": "Corki",
+        "name_ko": "코르키",
         "api_id": 42,
         "id": 18
     },
     {
         "name": "Darius",
+        "name_ko": "다리우스",
         "api_id": 122,
         "id": 19
     },
     {
         "name": "Diana",
+        "name_ko": "다이애나",
         "api_id": 131,
         "id": 20
     },
     {
         "name": "Draven",
+        "name_ko": "드레이븐",
         "api_id": 119,
         "id": 21
     },
     {
         "name": "DrMundo",
+        "name_ko": "문도 박사",
         "api_id": 36,
         "id": 22
     },
     {
         "name": "Ekko",
+        "name_ko": "에코",
         "api_id": 245,
         "id": 23
     },
     {
         "name": "Elise",
+        "name_ko": "엘리스",
         "api_id": 60,
         "id": 24
     },
     {
         "name": "Evelynn",
+        "name_ko": "이블린",
         "api_id": 28,
         "id": 25
     },
     {
         "name": "Ezreal",
+        "name_ko": "이즈리얼",
         "api_id": 81,
         "id": 26
     },
     {
         "name": "Fiddlesticks",
+        "name_ko": "피들스틱",
         "api_id": 9,
         "id": 27
     },
     {
         "name": "Fiora",
+        "name_ko": "피오라",
         "api_id": 114,
         "id": 28
     },
     {
         "name": "Fizz",
+        "name_ko": "피즈",
         "api_id": 105,
         "id": 29
     },
     {
         "name": "Galio",
+        "name_ko": "갈리오",
         "api_id": 3,
         "id": 30
     },
     {
         "name": "Gangplank",
+        "name_ko": "갱플랭크",
         "api_id": 41,
         "id": 31
     },
     {
         "name": "Garen",
+        "name_ko": "가렌",
         "api_id": 86,
         "id": 32
     },
     {
         "name": "Gnar",
+        "name_ko": "나르",
         "api_id": 150,
         "id": 33
     },
     {
         "name": "Gragas",
+        "name_ko": "그라가스",
         "api_id": 79,
         "id": 34
     },
     {
         "name": "Graves",
+        "name_ko": "그레이브즈",
         "api_id": 104,
         "id": 35
     },
     {
         "name": "Hecarim",
+        "name_ko": "헤카림",
         "api_id": 120,
         "id": 36
     },
     {
         "name": "Heimerdinger",
+        "name_ko": "하이머딩거",
         "api_id": 74,
         "id": 37
     },
     {
         "name": "Illaoi",
+        "name_ko": "일라오이",
         "api_id": 420,
         "id": 38
     },
     {
         "name": "Irelia",
+        "name_ko": "이렐리아",
         "api_id": 39,
         "id": 39
     },
     {
         "name": "Ivern",
+        "name_ko": "아이번",
         "api_id": 427,
         "id": 40
     },
     {
         "name": "Janna",
+        "name_ko": "잔나",
         "api_id": 40,
         "id": 41
     },
     {
         "name": "JarvanIV",
+        "name_ko": "자르반 4세",
         "api_id": 59,
         "id": 42
     },
     {
         "name": "Jax",
+        "name_ko": "잭스",
         "api_id": 24,
         "id": 43
     },
     {
         "name": "Jayce",
+        "name_ko": "제이스",
         "api_id": 126,
         "id": 44
     },
     {
         "name": "Jhin",
+        "name_ko": "진",
         "api_id": 202,
         "id": 45
     },
     {
         "name": "Jinx",
+        "name_ko": "징크스",
         "api_id": 222,
         "id": 46
     },
     {
         "name": "Kaisa",
+        "name_ko": "카이사",
         "api_id": 145,
         "id": 47
     },
     {
         "name": "Kalista",
+        "name_ko": "칼리스타",
         "api_id": 429,
         "id": 48
     },
     {
         "name": "Karma",
+        "name_ko": "카르마",
         "api_id": 43,
         "id": 49
     },
     {
         "name": "Karthus",
+        "name_ko": "카서스",
         "api_id": 30,
         "id": 50
     },
     {
         "name": "Kassadin",
+        "name_ko": "카사딘",
         "api_id": 38,
         "id": 51
     },
     {
         "name": "Katarina",
+        "name_ko": "카타리나",
         "api_id": 55,
         "id": 52
     },
     {
         "name": "Kayle",
+        "name_ko": "케일",
         "api_id": 10,
         "id": 53
     },
     {
         "name": "Kayn",
+        "name_ko": "케인",
         "api_id": 141,
         "id": 54
     },
     {
         "name": "Kennen",
+        "name_ko": "케넨",
         "api_id": 85,
         "id": 55
     },
     {
         "name": "Khazix",
+        "name_ko": "카직스",
         "api_id": 121,
         "id": 56
     },
     {
         "name": "Kindred",
+        "name_ko": "킨드레드",
         "api_id": 203,
         "id": 57
     },
     {
         "name": "Kled",
+        "name_ko": "클레드",
         "api_id": 240,
         "id": 58
     },
     {
         "name": "KogMaw",
+        "name_ko": "코그모",
         "api_id": 96,
         "id": 59
     },
     {
         "name": "Leblanc",
+        "name_ko": "르블랑",
         "api_id": 7,
         "id": 60
     },
     {
         "name": "LeeSin",
+        "name_ko": "리 신",
         "api_id": 64,
         "id": 61
     },
     {
         "name": "Leona",
+        "name_ko": "레오나",
         "api_id": 89,
         "id": 62
     },
     {
         "name": "Lissandra",
+        "name_ko": "리산드라",
         "api_id": 127,
         "id": 63
     },
     {
         "name": "Lucian",
+        "name_ko": "루시안",
         "api_id": 236,
         "id": 64
     },
     {
         "name": "Lulu",
+        "name_ko": "룰루",
         "api_id": 117,
         "id": 65
     },
     {
         "name": "Lux",
+        "name_ko": "럭스",
         "api_id": 99,
         "id": 66
     },
     {
         "name": "Malphite",
+        "name_ko": "말파이트",
         "api_id": 54,
         "id": 67
     },
     {
         "name": "Malzahar",
+        "name_ko": "말자하",
         "api_id": 90,
         "id": 68
     },
     {
         "name": "Maokai",
+        "name_ko": "마오카이",
         "api_id": 57,
         "id": 69
     },
     {
         "name": "MasterYi",
+        "name_ko": "마스터 이",
         "api_id": 11,
         "id": 70
     },
     {
         "name": "MissFortune",
+        "name_ko": "미스 포츈",
         "api_id": 21,
         "id": 71
     },
     {
         "name": "MonkeyKing",
+        "name_ko": "오공",
         "api_id": 62,
         "id": 72
     },
     {
         "name": "Mordekaiser",
+        "name_ko": "모데카이저",
         "api_id": 82,
         "id": 73
     },
     {
         "name": "Morgana",
+        "name_ko": "모르가나",
         "api_id": 25,
         "id": 74
     },
     {
         "name": "Nami",
+        "name_ko": "나미",
         "api_id": 267,
         "id": 75
     },
     {
         "name": "Nasus",
+        "name_ko": "나서스",
         "api_id": 75,
         "id": 76
     },
     {
         "name": "Nautilus",
+        "name_ko": "노틸러스",
         "api_id": 111,
         "id": 77
     },
     {
         "name": "Neeko",
+        "name_ko": "니코",
         "api_id": 518,
         "id": 78
     },
     {
         "name": "Nidalee",
+        "name_ko": "니달리",
         "api_id": 76,
         "id": 79
     },
     {
         "name": "Nocturne",
+        "name_ko": "녹턴",
         "api_id": 56,
         "id": 80
     },
     {
         "name": "Nunu",
+        "name_ko": "누누",
         "api_id": 20,
         "id": 81
     },
     {
         "name": "Olaf",
+        "name_ko": "올라프",
         "api_id": 2,
         "id": 82
     },
     {
         "name": "Orianna",
+        "name_ko": "오리아나",
         "api_id": 61,
         "id": 83
     },
     {
         "name": "Ornn",
+        "name_ko": "오른",
         "api_id": 516,
         "id": 84
     },
     {
         "name": "Pantheon",
+        "name_ko": "판테온",
         "api_id": 80,
         "id": 85
     },
     {
         "name": "Poppy",
+        "name_ko": "뽀삐",
         "api_id": 78,
         "id": 86
     },
     {
         "name": "Pyke",
+        "name_ko": "파이크",
         "api_id": 555,
         "id": 87
     },
     {
         "name": "Qiyana",
+        "name_ko": "키아나",
         "api_id": 246,
         "id": 88
     },
     {
         "name": "Quinn",
+        "name_ko": "퀸",
         "api_id": 133,
         "id": 89
     },
     {
         "name": "Rakan",
+        "name_ko": "라칸",
         "api_id": 497,
         "id": 90
     },
     {
         "name": "Rammus",
+        "name_ko": "람머스",
         "api_id": 33,
         "id": 91
     },
     {
         "name": "RekSai",
+        "name_ko": "렉사이",
         "api_id": 421,
         "id": 92
     },
     {
         "name": "Renekton",
+        "name_ko": "레넥톤",
         "api_id": 58,
         "id": 93
     },
     {
         "name": "Rengar",
+        "name_ko": "렝가",
         "api_id": 107,
         "id": 94
     },
     {
         "name": "Riven",
+        "name_ko": "리븐",
         "api_id": 92,
         "id": 95
     },
     {
         "name": "Rumble",
+        "name_ko": "럼블",
         "api_id": 68,
         "id": 96
     },
     {
         "name": "Ryze",
+        "name_ko": "라이즈",
         "api_id": 13,
         "id": 97
     },
     {
         "name": "Sejuani",
+        "name_ko": "세주아니",
         "api_id": 113,
         "id": 98
     },
     {
         "name": "Shaco",
+        "name_ko": "샤코",
         "api_id": 35,
         "id": 99
     },
     {
         "name": "Shen",
+        "name_ko": "쉔",
         "api_id": 98,
         "id": 100
     },
     {
         "name": "Shyvana",
+        "name_ko": "쉬바나",
         "api_id": 102,
         "id": 101
     },
     {
         "name": "Singed",
+        "name_ko": "신지드",
         "api_id": 27,
         "id": 102
     },
     {
         "name": "Sion",
+        "name_ko": "사이온",
         "api_id": 14,
         "id": 103
     },
     {
         "name": "Sivir",
+        "name_ko": "시비르",
         "api_id": 15,
         "id": 104
     },
     {
         "name": "Skarner",
+        "name_ko": "스카너",
         "api_id": 72,
         "id": 105
     },
     {
         "name": "Sona",
+        "name_ko": "소나",
         "api_id": 37,
         "id": 106
     },
     {
         "name": "Soraka",
+        "name_ko": "소라카",
         "api_id": 16,
         "id": 107
     },
     {
         "name": "Swain",
+        "name_ko": "스웨인",
         "api_id": 50,
         "id": 108
     },
     {
         "name": "Sylas",
+        "name_ko": "사일러스",
         "api_id": 517,
         "id": 109
     },
     {
         "name": "Syndra",
+        "name_ko": "신드라",
         "api_id": 134,
         "id": 110
     },
     {
         "name": "TahmKench",
+        "name_ko": "탐 켄치",
         "api_id": 223,
         "id": 111
     },
     {
         "name": "Taliyah",
+        "name_ko": "탈리야",
         "api_id": 163,
         "id": 112
     },
     {
         "name": "Talon",
+        "name_ko": "탈론",
         "api_id": 91,
         "id": 113
     },
     {
         "name": "Taric",
+        "name_ko": "타릭",
         "api_id": 44,
         "id": 114
     },
     {
         "name": "Teemo",
+        "name_ko": "티모",
         "api_id": 17,
         "id": 115
     },
     {
         "name": "Thresh",
+        "name_ko": "쓰레쉬",
         "api_id": 412,
         "id": 116
     },
     {
         "name": "Tristana",
+        "name_ko": "트리스타나",
         "api_id": 18,
         "id": 117
     },
     {
         "name": "Trundle",
+        "name_ko": "트런들",
         "api_id": 48,
         "id": 118
     },
     {
         "name": "Tryndamere",
+        "name_ko": "트린다미어",
         "api_id": 23,
         "id": 119
     },
     {
         "name": "TwistedFate",
+        "name_ko": "트위스티드 페이트",
         "api_id": 4,
         "id": 120
     },
     {
         "name": "Twitch",
+        "name_ko": "트위치",
         "api_id": 29,
         "id": 121
     },
     {
         "name": "Udyr",
+        "name_ko": "우디르",
         "api_id": 77,
         "id": 122
     },
     {
         "name": "Urgot",
+        "name_ko": "우르곳",
         "api_id": 6,
         "id": 123
     },
     {
         "name": "Varus",
+        "name_ko": "바루스",
         "api_id": 110,
         "id": 124
     },
     {
         "name": "Vayne",
+        "name_ko": "베인",
         "api_id": 67,
         "id": 125
     },
     {
         "name": "Veigar",
+        "name_ko": "베이가",
         "api_id": 45,
         "id": 126
     },
     {
         "name": "Velkoz",
+        "name_ko": "벨코즈",
         "api_id": 161,
         "id": 127
     },
     {
         "name": "Vi",
+        "name_ko": "바이",
         "api_id": 254,
         "id": 128
     },
     {
         "name": "Viktor",
+        "name_ko": "빅토르",
         "api_id": 112,
         "id": 129
     },
     {
         "name": "Vladimir",
+        "name_ko": "블라디미르",
         "api_id": 8,
         "id": 130
     },
     {
         "name": "Volibear",
+        "name_ko": "볼리베어",
         "api_id": 106,
         "id": 131
     },
     {
         "name": "Warwick",
+        "name_ko": "워윅",
         "api_id": 19,
         "id": 132
     },
     {
         "name": "Xayah",
+        "name_ko": "자야",
         "api_id": 498,
         "id": 133
     },
     {
         "name": "Xerath",
+        "name_ko": "제라스",
         "api_id": 101,
         "id": 134
     },
     {
         "name": "XinZhao",
+        "name_ko": "신 짜오",
         "api_id": 5,
         "id": 135
     },
     {
         "name": "Yasuo",
+        "name_ko": "야스오",
         "api_id": 157,
         "id": 136
     },
     {
         "name": "Yorick",
+        "name_ko": "요릭",
         "api_id": 83,
         "id": 137
     },
     {
         "name": "Yuumi",
+        "name_ko": "유미",
         "api_id": 350,
         "id": 138
     },
     {
         "name": "Zac",
+        "name_ko": "자크",
         "api_id": 154,
         "id": 139
     },
     {
         "name": "Zed",
+        "name_ko": "제드",
         "api_id": 238,
         "id": 140
     },
     {
         "name": "Ziggs",
+        "name_ko": "직스",
         "api_id": 115,
         "id": 141
     },
     {
         "name": "Zilean",
+        "name_ko": "질리언",
         "api_id": 26,
         "id": 142
     },
     {
         "name": "Zoe",
+        "name_ko": "조이",
         "api_id": 142,
         "id": 143
     },
     {
         "name": "Zyra",
+        "name_ko": "자이라",
         "api_id": 143,
         "id": 144
     }

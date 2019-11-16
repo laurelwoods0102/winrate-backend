@@ -7,9 +7,9 @@ class GameData(models.Model):
     #encrypted_account = models.CharField(max_length=25, blank=True)
     #history = models.FileField(blank=True)
 
-    primary_team_inference = models.CharField(max_length=200, blank=True)
-    primary_enemy_inference = models.CharField(max_length=200, blank=True)
-    primary_team_inference = models.CharField(max_length=200, blank=True)
+    inference_team = models.TextField(blank=True)
+    inference_enemy = models.TextField(blank=True)
+    inference_secondary = models.TextField(blank=True)
 
     latest_model_trained = models.DateTimeField(blank=True)
     

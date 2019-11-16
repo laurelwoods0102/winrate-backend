@@ -82,6 +82,8 @@ def process_input(model_input):
     processed_input.extend(champion_picks)
     return processed_input
 
+
 if __name__ == "__main__":
     preprocessor = DatasetPreprocessor("hide on bush")
     preprocessor.process_dataset()
+    
