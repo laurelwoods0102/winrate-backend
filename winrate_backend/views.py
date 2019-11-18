@@ -34,7 +34,7 @@ class GameDataViewSet(viewsets.ModelViewSet):
         serializer = GameDataListSerializer(self.queryset, many=True)
         for data in serializer.data:
             if request.query_params["game_id"] == data["game_id"]:
-                return Response({"id": data["id"]})
+                return Response({"id": data["id"], "game_id": data["game_id"]})
         return Response(status=status.HTTP_404_NOT_FOUND)
     
     @action(methods=['POST'], detail=True)

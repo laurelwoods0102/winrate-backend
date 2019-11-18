@@ -119,7 +119,7 @@ def crawl_splash():
         url = "http://ddragon.leagueoflegends.com/cdn/9.22.1/img/champion/{}.png".format(champ["name"])
         response = requests.get(url)
         if response.status_code == 200:
-            with open(os.path.join(BASE_DIR, 'prediction_model', 'documents', 'splash_ko', "{}.png".format(champ["name_ko"])), 'wb') as i:
+            with open(os.path.join(BASE_DIR, 'prediction_model', 'documents', 'splash', "{}.png".format(champ["id"])), 'wb') as i:
                 i.write(response.content)
 
 if __name__ == "__main__":
