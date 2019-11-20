@@ -12,4 +12,3 @@ class GameData(models.Model):
     inference_secondary = models.TextField(blank=True)
 
     latest_model_trained = models.DateTimeField(blank=True)
-    

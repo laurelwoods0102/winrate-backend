@@ -5,6 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
 
 from winrate_backend.models import GameData
 from winrate_backend.serializers import GameDataSerializer, GameDataListSerializer
@@ -124,3 +125,8 @@ class GameDataViewSet(viewsets.ModelViewSet):
 
         game_id = serializer.data["game_id"]
         return Response(average(game_id))
+
+    @action(methods=['GET'], detail=False)
+    def splash(self, request):
+        image = open(os.path.join(BASE_DIR, 'media', 'splash', '{}.png'.format(request.query_params["champion_id"])), 'rb')
+        return HttpResponse(image, content_type="image/png")

@@ -141,15 +141,14 @@ REST_FRAMEWORK = {
 #MEDIA_URL = '/uploads/'
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 
-MEDIA_ROOT = '/data/'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
 ]
 
 CORS_ALLOW_METHODS = [
-    'DELETE',
     'GET',
     'OPTIONS',
     'PATCH',
