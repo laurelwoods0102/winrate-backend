@@ -96,16 +96,13 @@ class GameDataViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         '''
         
-    @action(methods=['GET'], detail=True)
+    @action(methods=['POST'], detail=True)
     def predict(self, request, pk):
         game_data = get_object_or_404(self.queryset, pk=pk)
         serializer = GameDataSerializer(game_data)
 
-        input_team = process_input(literal_eval(request.query_params["team"]))
-        input_enemy = process_input(literal_eval(request.query_params["enemy"]))
-
-        predict_team = primary_model_predict(serializer.data["game_id"], "team", input_team)
-        predict_enemy = primary_model_predict(serializer.data["game_id"], "enemy", input_enemy)    
+        predict_team = primary_model_predict(serializer.data["game_id"], "team", request.data['team'])
+        predict_enemy = primary_model_predict(serializer.data["game_id"], "enemy", request.data['enemy'])    
 
         predict_secondary = secondary_model_predict(serializer.data["game_id"], predict_team, predict_enemy)
 

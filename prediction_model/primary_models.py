@@ -5,6 +5,8 @@ from sklearn.model_selection import KFold
 import tensorflow as tf
 from tensorflow import keras
 
+from prediction_model.dataset_preprocessor import process_input
+
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -164,7 +166,7 @@ def primary_model_train(name, model_type):
 def primary_model_predict(name, model_type, model_input):
     name = name.replace(' ', '-')
     model = LogisticModel(146, trained=True, name=name, model_type=model_type)
-    logit = model([model_input])
+    logit = model([process_input(model_input)])
     hypos = hypothesis(logit)
 
     return hypos.numpy()[0][0]
