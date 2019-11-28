@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import KFold
 
 import tensorflow as tf
 from tensorflow import keras
@@ -90,56 +89,6 @@ def batch_accuracy(hypos, labels, batch_size=32):
     return accuracy/batch_size
 
 
-def KFoldValidation(name, model_type):    
-    name = name.replace(' ', '-')
-    df = pd.read_csv(os.path.join(BASE_DIR, 'dataset', 'dataset_{0}_{1}.csv'.format(name, model_type)), dtype='float32')
-    df = df.sample(frac=1).reset_index(drop=True)   # shuffle
-
-    batch_size = 32
-
-    train_len, test_size = divmod(len(df), batch_size)
-    if test_size == 0:
-        train_len -= 1
-        test_size = batch_size
-
-    train_df = df.loc[:train_len*batch_size-1]
-    test_df = df.loc[train_len*batch_size-1:]
-
-    models = list()
-    train_cost = list()
-    val_accuracy = list()
-
-    kf = KFold(n_splits=train_len)
-    for train_index, val_index in kf.split(train_df):
-        model = LogisticModel(146)
-
-        train_ds = df_to_dataset(train_df.iloc[train_index])
-        train_dataset = train_ds.map(pack_features_vector)
-        for features, labels in train_dataset:
-            current_cost = train(model, features, labels)
-            train_cost.append(current_cost.numpy())
-
-        val_ds = df_to_dataset(train_df.iloc[val_index])
-        val_dataset = val_ds.map(pack_features_vector)
-        for features, labels in val_dataset:
-            logits = model(features)
-            hypos = hypothesis(logits)
-            
-            accuracy = batch_accuracy(tf.reshape(hypos, [1, 32]).numpy()[0], labels.numpy())
-            val_accuracy.append(accuracy)
-        
-        models.append(model)
-    
-    with open('./model_results/{0}_{1}_train_cost.txt'.format(name, model_type), 'w') as f:
-        for tc in train_cost:
-            f.write(str(tc))
-            f.write('\n')
-
-    with open('./model_results/{0}_{1}_validation_accuracy.txt'.format(name, model_type), 'w') as g:
-        for va in val_accuracy:
-            g.write(str(va))
-            g.write('\n')
-
 def primary_model_train(name, model_type):    
     name = name.replace(' ', '-')
     df = pd.read_csv(os.path.join(BASE_DIR, 'data', 'dataset', 'dataset_{0}_{1}.csv'.format(name, model_type)), dtype='float32')
@@ -173,5 +122,4 @@ def primary_model_predict(name, model_type, model_input):
 
 if __name__ == "__main__":
     name = "hide on bush"
-    KFoldValidation(name, "enemy")
     primary_model_train(name, "enemy")

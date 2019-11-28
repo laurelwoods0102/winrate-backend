@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import KFold
 
 import tensorflow as tf
 from tensorflow import keras
@@ -78,61 +77,6 @@ def batch_accuracy(hypos, labels, batch_size=32):
             accuracy += 1
     return accuracy/batch_size
 
-
-def KFoldValidation(name):
-    df_team = pd.read_csv("./dataset/secondary/dataset_{0}_team.csv".format(name), dtype='float32')
-    df_enemy = pd.read_csv("./dataset/secondary/dataset_{0}_enemy.csv".format(name), dtype='float32')
-    df_average = pd.read_csv("./dataset/secondary/dataset_{0}_average.csv".format(name), dtype='float32')
-    df_response = pd.read_csv("./dataset/secondary/dataset_{0}_response.csv".format(name), dtype='float32')
-
-    bias = np.array([[float(1) for i in range(len(df_response))]], dtype='f4')
-    bias = pd.DataFrame(bias.T, columns=["bias"])
-    
-    df = pd.concat([bias, df_average, df_team, df_enemy, df_response], axis=1)
-
-    batch_size = 32
-
-    train_len, test_size = divmod(len(df), batch_size)
-    if test_size == 0:
-        train_len -= 1
-        test_size = batch_size
-
-    train_df = df.loc[:train_len*batch_size-1]
-    test_df = df.loc[train_len*batch_size-1:]
-
-    models = list()
-    train_cost = list()
-    val_accuracy = list()
-
-    kf = KFold(n_splits=train_len)
-    for train_index, val_index in kf.split(train_df):
-        model = LogisticModel(4)
-
-        train_ds = df_to_dataset(train_df.iloc[train_index])
-        train_dataset = train_ds.map(pack_features_vector)
-        for features, labels in train_dataset:
-            current_cost = train(model, features, labels)
-            train_cost.append(current_cost.numpy())
-
-        val_ds = df_to_dataset(train_df.iloc[val_index])
-        val_dataset = val_ds.map(pack_features_vector)
-        for features, labels in val_dataset:
-            logits = model(features)
-            hypos = hypothesis(logits)
-            
-            accuracy = batch_accuracy(tf.reshape(hypos, [1, 32]).numpy()[0], labels.numpy()[0])
-            val_accuracy.append(accuracy)
-        
-        models.append(model)
-
-    tc = np.array([train_cost])
-    tc_df = pd.DataFrame(tc.T, columns=["train_cost"])
-    tc_df.to_csv("./model_results/{0}_secondary_train_cost.csv".format(name), index=False)
-
-    va = np.array([val_accuracy])
-    va_df = pd.DataFrame(va.T, columns=["val_accuracy"])
-    va_df.to_csv("./model_results/{0}_secondary_validation_accuracy.csv".format(name), index=False)
-
 def secondary_model_train(name):
     name = name.replace(' ', '-')
     secondary_path = os.path.join(BASE_DIR, 'data', 'dataset', 'secondary')
@@ -192,5 +136,4 @@ def secondary_model_predict(name, input_team, input_enemy):
 
 if __name__ == "__main__":
     name = "laurelwoods"
-    #KFoldValidation(name)
     secondary_model_predict("laurelwoods", None, None)
